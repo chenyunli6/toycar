@@ -31,29 +31,47 @@ class Car
   end
 
   def turn_to_left
-    case @direction
-    when 'N'
-      @direction = 'W'
-    when 'S'
-      @direction = 'E'
-    when 'E'
-      @direction = 'N'
-    when 'W'
-      @direction = 'S'
-    end
+
+    direction_options = 'NWSE'
+
+    old_index = direction_options.index(@direction)
+
+    index = ( old_index + 1 ) % 4
+
+    @direction = direction_options[index]
+
+    # case @direction
+    # when 'N'
+    #   @direction = 'W'
+    # when 'S'
+    #   @direction = 'E'
+    # when 'E'
+    #   @direction = 'N'
+    # when 'W'
+    #   @direction = 'S'
+    # end
   end
 
   def turn_to_right
-    case @direction
-    when 'N'
-      @direction = 'E'
-    when 'S'
-      @direction = 'W'
-    when 'E'
-      @direction = 'S'
-    when 'W'
-      @direction = 'N'
-    end
+
+    direction_options = 'NWSE'
+
+    old_index = direction_options.index(@direction)
+
+    index = old_index - 1
+
+    @direction = direction_options[index]
+
+    # case @direction
+    # when 'N'
+    #   @direction = 'E'
+    # when 'S'
+    #   @direction = 'W'
+    # when 'E'
+    #   @direction = 'S'
+    # when 'W'
+    #   @direction = 'N'
+    # end
   end
 
 end
