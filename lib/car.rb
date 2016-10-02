@@ -8,16 +8,17 @@ class Car
   end
 
   def move
-    case @direction
-    when 'N'
-      @y += 1
-    when 'S'
-      @y -= 1
-    when 'E'
-      @x += 1
-    when 'W'
-      @x -= 1
+    
+    operators_options = { N: 1, S: -1, E: 1, W: -1  }
+
+    move_operators = operators_options[@direction.to_sym]
+
+    if 'NS'.include?(@direction)
+      @y += move_operators
+    elsif 'EW'.include?(@direction)
+      @x += move_operators
     end
+
     puts 'M'
   end
 
@@ -36,13 +37,9 @@ class Car
 
     old_index = direction_options.index(@direction)
 
-    index =
-      case target
-      when 'L'
-        (old_index + 1) % 4
-      when 'R'
-        old_index - 1
-      end
+    direction_operators = { L: 1 , R: -1 }
+
+    index = ( old_index + direction_operators[target.to_sym] ) % 4
   end
 
 end
