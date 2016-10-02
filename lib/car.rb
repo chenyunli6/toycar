@@ -1,7 +1,7 @@
 class Car
-  attr_accessor :x,:y,:direction
+  attr_accessor :x, :y, :direction
 
-  def initialize(x,y,direction)
+  def initialize(x, y, direction)
     @x = x
     @y = y
     @direction = direction
@@ -22,56 +22,27 @@ class Car
   end
 
   def turn(target)
-    if target == 'L'
-      turn_to_left
-    elsif target == 'R'
-      turn_to_right
-    end
+
+    direction_options = 'NWSE'
+
+    index = get_index(target, direction_options)
+
+    @direction = direction_options[index]
+
     puts target
   end
 
-  def turn_to_left
-
-    direction_options = 'NWSE'
+  def get_index(target, direction_options)
 
     old_index = direction_options.index(@direction)
 
-    index = ( old_index + 1 ) % 4
-
-    @direction = direction_options[index]
-
-    # case @direction
-    # when 'N'
-    #   @direction = 'W'
-    # when 'S'
-    #   @direction = 'E'
-    # when 'E'
-    #   @direction = 'N'
-    # when 'W'
-    #   @direction = 'S'
-    # end
-  end
-
-  def turn_to_right
-
-    direction_options = 'NWSE'
-
-    old_index = direction_options.index(@direction)
-
-    index = old_index - 1
-
-    @direction = direction_options[index]
-
-    # case @direction
-    # when 'N'
-    #   @direction = 'E'
-    # when 'S'
-    #   @direction = 'W'
-    # when 'E'
-    #   @direction = 'S'
-    # when 'W'
-    #   @direction = 'N'
-    # end
+    index =
+      case target
+      when 'L'
+        (old_index + 1) % 4
+      when 'R'
+        old_index - 1
+      end
   end
 
 end
