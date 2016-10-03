@@ -8,16 +8,12 @@ class Car
   end
 
   def move
-    
-    operators_options = { N: 1, S: -1, E: 1, W: -1  }
 
-    move_operators = operators_options[@direction.to_sym]
+    move_options = { N: [0,1], S: [0,-1], E: [ 1,0 ], W: [-1, 0] }
 
-    if 'NS'.include?(@direction)
-      @y += move_operators
-    elsif 'EW'.include?(@direction)
-      @x += move_operators
-    end
+    @x += move_options[@direction.to_sym][0]
+
+    @y += move_options[@direction.to_sym][1]
 
     puts 'M'
   end
